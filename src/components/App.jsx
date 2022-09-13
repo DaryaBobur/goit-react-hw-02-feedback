@@ -19,12 +19,12 @@ addFeedback = (statistics) => {
   })
 }
 
-countTotalFeedback() {
+countTotalFeedback = () => {
 return Object.values(this.state).reduce((total, rating) => total + rating, 0);
  
 }
 
-countPositiveFeedbackPercentage() {
+countPositiveFeedbackPercentage = () => {
   const total = Object.values(this.state).reduce((total, rating) => total + rating, 0);
   return Math.round(this.state.good * 100 / total);
 }
@@ -32,15 +32,16 @@ countPositiveFeedbackPercentage() {
 render() {
 
   const { good, neutral, bad } = this.state;
-  const keys = Object.keys(this.state);
+  const keysState = Object.keys(this.state);
   const totalFeedback = this.countTotalFeedback();
 
   return (
     <div>
       
     <Section title="Please leave feedback">
+
       <FeedbackOptions 
-      options={keys} 
+      options={keysState} 
       onLeaveFeedback={this.addFeedback} 
       />
     </Section>
@@ -57,8 +58,8 @@ render() {
     bad={bad} 
     total ={this.countTotalFeedback()} 
     positivePercentage={this.countPositiveFeedbackPercentage()} 
-    />
-    }
+    />}
+
   </Section>
   
     </div>
