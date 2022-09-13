@@ -48,7 +48,7 @@ render() {
   <Section title="Statistics">
     {!totalFeedback ?  
     <Notification 
-    message="There is no feedback" 
+    message="There is no feedback!" 
     /> 
     : 
     <Statistics 
