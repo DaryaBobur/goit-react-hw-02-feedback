@@ -1,9 +1,8 @@
 import { Component } from 'react';
 import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FedbackOptions';
-
-
-
+import Section from './Section/Section';
+import Notification from './Notification/Notification';
 
 class App extends Component {
   state = {
@@ -12,22 +11,12 @@ class App extends Component {
     bad: 0
   };
 
-handleClick = (key) => {
-  this.setState(prevState => {
-    return {
-      [key]: prevState[key] + 1 
-    }
+addFeedback = (statistics) => {
+  this.setState((prevState) => {
+      return {
+          [statistics]: prevState[statistics] + 1
+      }
   })
-
-}
-
-addRating = () => {
-this.setState(prevState => {
-  return {
-    good: prevState.good + 1,
-  }
-
-})
 }
 
 countTotalFeedback() {
@@ -41,22 +30,27 @@ countPositiveFeedbackPercentage() {
 }
 
 render() {
+
   const { good, neutral, bad } = this.state;
+  const keys = Object.keys(this.state);
+  const totalFeedback = this.countTotalFeedback();
+
   return (
-
-    
     <div>
-    <h2>Please leave feedback</h2>
+      
+    <Section title="Please leave feedback">
+      <FeedbackOptions 
+      options={keys} 
+      onLeaveFeedback={this.addFeedback} 
+      />
+    </Section>
 
-
-      {/* {Object.keys(this.state).map((key) => ( */}
-      <FeedbackOptions key={this.props.state} options={this.handleClick} onLeaveFeedback={this.props.addRating} />
-      {/* // <button key={key} type="button" onClick={() => this.handleClick(key)} className={this.props.addRating}>{key}</button> */}
-      {/* ))} */}
-
-
-    
-
+  <Section title="Statistics">
+    {!totalFeedback ?  
+    <Notification 
+    message="There is no feedback" 
+    /> 
+    : 
     <Statistics 
     good={good} 
     neutral={neutral} 
@@ -64,10 +58,11 @@ render() {
     total ={this.countTotalFeedback()} 
     positivePercentage={this.countPositiveFeedbackPercentage()} 
     />
-    </div>
-  )}
-
+    }
+  </Section>
   
+    </div>
+  )}  
 };
 
 export default App;
