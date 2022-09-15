@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StatisticsFeedback = styled.ul`
-padding: 0;
+    padding: 0;
 
 
 li {
