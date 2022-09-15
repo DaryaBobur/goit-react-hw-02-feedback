@@ -20,7 +20,7 @@ addFeedback = (statistics) => {
 }
 
 countTotalFeedback = () => {
-return Object.values(this.state).reduce((total, rating) => total + rating, 0);
+  return Object.values(this.state).reduce((total, rating) => total + rating, 0);
  
 }
 
@@ -38,30 +38,30 @@ render() {
   return (
     <div>
       
-    <Section title="Please leave feedback">
+        <Section title="Please leave feedback">
 
-      <FeedbackOptions 
-      options={keysState} 
-      onLeaveFeedback={this.addFeedback} 
-      />
-    </Section>
+          <FeedbackOptions 
+            options={keysState} 
+            onLeaveFeedback={this.addFeedback} 
+          />
+        </Section>
 
-  <Section title="Statistics">
-    {!totalFeedback ?  
-    <Notification 
-    message="There is no feedback!" 
-    /> 
-    : 
-    <Statistics 
-    good={good} 
-    neutral={neutral} 
-    bad={bad} 
-    total ={this.countTotalFeedback()} 
-    positivePercentage={this.countPositiveFeedbackPercentage()} 
-    />}
+      <Section title="Statistics">
+        {!totalFeedback ?  
+        <Notification 
+          message="There is no feedback!" 
+        /> 
+        : 
+        <Statistics 
+          good={good} 
+          neutral={neutral} 
+          bad={bad} 
+          total ={this.countTotalFeedback()} 
+          positivePercentage={this.countPositiveFeedbackPercentage()} 
+        />}
 
-  </Section>
-  
+      </Section>
+    
     </div>
   )}  
 };
