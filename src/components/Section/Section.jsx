@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { SectionFeedback } from './SectionStyled';
 
 const Section = ({title, children}) => {
-return (
+  return (
     <SectionFeedback>
         <h2 className="title">{title}</h2>
         {children}
